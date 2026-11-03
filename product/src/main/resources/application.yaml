@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: product-service
+  datasource:
+#    url: jdbc:postgresql://ep-broad-snow-a100edam-pooler.ap-southeast-1.aws.neon.tech/product?sslmode=require&channel_binding=require
+#    username: neondb_owner
+#    password: npg_MAqVCyG13rBL
+    url: jdbc:postgresql://localhost:5432/product
+    username: gnanendra
+    password: gnanendra
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+#  h2:
+#    console:
+#      enabled: true
+#  datasource:
+#    url: jdbc:h2:mem:test
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+
+server:
+  port: 8081

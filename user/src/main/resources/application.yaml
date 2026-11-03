@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: user-service
+  mongodb:
+#    uri: mongodb+srv://gnanendra:JjLSKbvcpBuqNhUb@user-data.wckrkhz.mongodb.net/?retryWrites=true&w=majority&tls=true
+    uri: mongodb://localhost:27017/userdb
+    database: userdb
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/userdb
+#    username: gnanendra
+#    password: gnanendra
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+
+#  h2:
+#    console:
+#      enabled: true
+#  datasource:
+#    url: jdbc:h2:mem:test
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+
+server:
+  port: 8082
