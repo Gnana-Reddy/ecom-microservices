@@ -18,5 +18,4 @@ public class ProviderWebClient {
                     .retrieve()
                     .bodyToMono(String.class);
         }
-
 }
