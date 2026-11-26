@@ -25,6 +25,10 @@ public class ProductService {
         return mapToProductResponse(savedProduct);
     }
 
+    public Optional<ProductResponse> getProduct(String productId){
+        return productRepository.findByIdAndActiveTrue(productId)
+                .map(this::mapToProductResponse);
+    }
     public List<ProductResponse> getAllProducts(){
 
         return productRepository.findByActiveTrue().stream().map(this::mapToProductResponse).collect(Collectors.toList());
