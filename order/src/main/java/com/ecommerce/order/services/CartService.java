@@ -1,7 +1,11 @@
 package com.ecommerce.order.services;
 
 
+import com.ecommerce.order.clients.ProductServiceClient;
+import com.ecommerce.order.clients.UserServiceClient;
 import com.ecommerce.order.dto.CartItemRequest;
+import com.ecommerce.order.dto.ProductResponse;
+import com.ecommerce.order.dto.UserResponse;
 import com.ecommerce.order.models.CartItem;
 import com.ecommerce.order.repositories.CartItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,27 +20,20 @@ import java.util.Optional;
 public class CartService {
 
     private final CartItemRepository cartItemRepo;
+    private final ProductServiceClient productServiceClient;
+    private final UserServiceClient userServiceClient;
 
     public boolean addToCart(String userId, CartItemRequest request){
 
-//        Optional<Product> productOpt = productRepo.findById(request.getProductId());
-//
-//        if(productOpt.isEmpty()){
-//            return false;
-//        }
-//
-//        Product existingProduct = productOpt.get();
-//
-//        if(existingProduct.getStockQuantity() < request.getQuantity()){
-//            return false;
-//        }
-//
-//        Optional<User> userOpt = userRepo.findById(Long.valueOf(userId));
-//
-//        if(userOpt.isEmpty()){
-//            return false;
-//        }
-//        User existingUser = userOpt.get();
+
+        ProductResponse productResponse = productServiceClient.getProductDetails(request.getProductId());
+        if(productResponse == null || productResponse.getStockQuantity() < request.getQuantity()){
+            return false;
+        }
+
+        UserResponse userResponse = userServiceClient.getUserById(userId);
+
+        if(userResponse == null) return false;
 
         CartItem existingItem = cartItemRepo.findByUserIdAndProductId(userId,request.getProductId());
 
